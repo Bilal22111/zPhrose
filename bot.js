@@ -466,4 +466,4 @@ client.on("message", message => {
 
 
 
-client.login('NDQ5NzQ1MTc3NzA0MjY3Nzc3.DepLtQ.4KwKAoNceTLTFACL1QkY-VcleBQ');
+client.login(process.env.BOT_TOKEN);
