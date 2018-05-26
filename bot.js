@@ -5,6 +5,14 @@ var prefix = "-"
 
 
 
+
+client.on('message', msg => {
+  if (msg.content === '-help') {
+    msg.reply('شوف الخاص :mailbox: ');
+  }
+});
+
+
 client.on('message', message => {
     if (message.content.startsWith("-bot")) {
       message.channel.send({
