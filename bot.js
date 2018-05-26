@@ -252,6 +252,49 @@ client.on('message', message => {
 
 
 
+client.on('message', message => {
+        var prefix = "-"
+    if(message.content === prefix + "warn"){
+    
+    
+        if(message.author.bot) return;
+     let user = message.mentions.users.first();
+            if (!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("**ليس لديك برمشن MANAGE MESSAGES**");
+                        let reason = message.content.split(" ").slice(2).join(" ");
+                    if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+            if (!reason) return message.reply("**اكتب سبب التحذير**");
+        var channel =message.guild.channels.find('name', 'mod-log')
+    
+            message.channel.sendMessage(args.join("  "))
+           message.delete();
+      if (!channel) return message.reply('يجب ان يكون هناك شات بأسم watchdog');
+    
+      const embed = new Discord.RichEmbed()
+        .setColor(0x00AE86)
+        .setTimestamp()
+        .addField('Subject | الموضوع', 'Warn | تحذير')
+        .addField('User | الشخص', `${user.tag}`)
+        .addField('Moderator | الأداري', `${message.author.username}#${message.author.discriminator}`)
+        .addField('Warn | التحذير', reason);
+        message.delete();
+        return client.channels.get(channel.id).sendEmbed(embed);
+    
+    
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 client.on('ready', () => {
     client.user.setActivity("-help",{type: 'STREAMING'});
 
@@ -356,37 +399,7 @@ client.on("message", message => {
 
 
 
-client.on('message', message => {
-        var prefix = "-"
-    if(message.content === prefix + "warn"){
-    
-    
-        if(message.author.bot) return;
-         consloe.log("Hi");
-     let user = message.mentions.users.first();
-            if (!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("**ليس لديك برمشن MANAGE MESSAGES**");
-                        let reason = message.content.split(" ").slice(2).join(" ");
-                    if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-            if (!reason) return message.reply("**اكتب سبب التحذير**");
-        var channel =message.guild.channels.find('name', 'mod-log')
-    
-            message.channel.sendMessage(args.join("  "))
-           message.delete();
-      if (!channel) return message.reply('يجب ان يكون هناك شات بأسم watchdog');
-    
-      const embed = new Discord.RichEmbed()
-        .setColor(0x00AE86)
-        .setTimestamp()
-        .addField('Subject | الموضوع', 'Warn | تحذير')
-        .addField('User | الشخص', `${user.tag}`)
-        .addField('Moderator | الأداري', `${message.author.username}#${message.author.discriminator}`)
-        .addField('Warn | التحذير', reason);
-        message.delete();
-        return client.channels.get(channel.id).sendEmbed(embed);
-    
-    
-    }
-});
+
 
 
 
@@ -409,7 +422,7 @@ client.on('message', message => {
 
 
 client.on("message", message => {
-    if (message.content === "#help") {
+    if (message.content === "-help") {
      const embed = new Discord.RichEmbed()
          .setColor('RANDOM')
          .setFooter('By ♪ ℬℐℓѦℓ✋')
@@ -423,7 +436,7 @@ client.on("message", message => {
    -unmute | لإلغاء الاإسكات عن لاعب
    -bc     | لإرسال رسالة لمستخدمي البوت
    -clear  | لمسح اشات
-   -war    | تحذير لاعب
+   -warn    | تحذير لاعب
    **✨Common Commands | الاوامر العامة ✨**
    -help   | لإظهار هذه الرسالة
    -report |للتبليغ عن اي احد يقوم بالإزعاج
@@ -453,4 +466,4 @@ client.on("message", message => {
 
 
 
-client.login(process.env.BOT_TOKEN);
+client.login('NDQ5NzQ1MTc3NzA0MjY3Nzc3.DepLtQ.4KwKAoNceTLTFACL1QkY-VcleBQ');
